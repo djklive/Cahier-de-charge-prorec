@@ -10,568 +10,964 @@
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
+            font-family: 'Arial', sans-serif;
             background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            line-height: 1.6;
         }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
+        
+        .page {
+            min-height: 100vh;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            page-break-after: always;
         }
-
-        .header {
-            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+        
+        @media (max-width: 768px) {
+            .page {
+                padding: 20px;
+                min-height: auto;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .page {
+                padding: 15px;
+            }
+        }
+        
+        .cover-page {
+            background: linear-gradient(135deg, #2d5016 0%, #4a7c23 50%, #6ba644 100%);
             color: white;
-            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            margin-bottom: 40px;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(40, 167, 69, 0.3);
-        }
-
-        .header h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .header .subtitle {
-            font-size: 1.5rem;
-            font-weight: 300;
-            opacity: 0.9;
-        }
-
-        .section {
-            background: white;
-            margin-bottom: 30px;
-            border-radius: 15px;
+            position: relative;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
         }
-
-        .section:hover {
-            transform: translateY(-5px);
+        
+        .cover-page::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            animation: float 20s ease-in-out infinite;
         }
-
-        .section-header {
-            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
-            color: white;
-            padding: 25px 35px;
-            font-size: 1.8rem;
-            font-weight: 600;
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+        }
+        
+        .logo-placeholder {
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
             display: flex;
             align-items: center;
-            gap: 15px;
+            justify-content: center;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            z-index: 2;
         }
-
-        .section-content {
-            padding: 35px;
+        
+        @media (max-width: 768px) {
+            .logo-placeholder {
+                width: 150px;
+                height: 150px;
+                margin-bottom: 20px;
+            }
         }
-
-        .intro {
-            background: linear-gradient(135deg, #e8f5e8 0%, #d4edda 100%);
-            padding: 40px;
-            border-radius: 15px;
-            margin-bottom: 40px;
-            border-left: 5px solid #28a745;
+        
+        @media (max-width: 480px) {
+            .logo-placeholder {
+                width: 120px;
+                height: 120px;
+                margin-bottom: 15px;
+            }
         }
-
-        .intro h2 {
-            color: #28a745;
-            font-size: 2rem;
+        
+        .logo-text {
+            font-size: 48px;
+            font-weight: bold;
+            color: #6ba644;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .logo-text {
+                font-size: 36px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo-text {
+                font-size: 28px;
+            }
+        }
+        
+        .cover-title {
+            font-size: 48px;
+            font-weight: bold;
             margin-bottom: 20px;
-            font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 2;
         }
-
-        .intro p {
-            font-size: 1.1rem;
-            color: #495057;
+        
+        @media (max-width: 768px) {
+            .cover-title {
+                font-size: 36px;
+                margin-bottom: 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .cover-title {
+                font-size: 28px;
+                margin-bottom: 10px;
+            }
+        }
+        
+        .cover-subtitle {
+            font-size: 24px;
+            opacity: 0.9;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        @media (max-width: 768px) {
+            .cover-subtitle {
+                font-size: 20px;
+                margin-bottom: 30px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .cover-subtitle {
+                font-size: 18px;
+                margin-bottom: 20px;
+            }
+        }
+        
+        .cover-description {
+            font-size: 18px;
+            max-width: 600px;
+            opacity: 0.8;
+            position: relative;
+            z-index: 2;
+        }
+        
+        @media (max-width: 768px) {
+            .cover-description {
+                font-size: 16px;
+                max-width: 90%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .cover-description {
+                font-size: 14px;
+                max-width: 100%;
+            }
+        }
+        
+        .content-page {
+            background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 20px;
+            margin: 20px 0;
+        }
+        
+        .page-header {
+            background: linear-gradient(135deg, #6ba644 0%, #4a7c23 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 20px 20px 0 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><defs><pattern id="wave" x="0" y="0" width="100" height="20" patternUnits="userSpaceOnUse"><path d="M0 10 Q25 0 50 10 T100 10 V20 H0 Z" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="20" fill="url(%23wave)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .page-number {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        .page-title {
+            font-size: 32px;
+            font-weight: bold;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2d5016;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #6ba644;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 20px;
+                margin-bottom: 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .section-title {
+                font-size: 18px;
+                margin-bottom: 15px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+        
+        .section-number {
+            background: linear-gradient(135deg, #6ba644, #4a7c23);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        @media (max-width: 480px) {
+            .section-number {
+                width: 35px;
+                height: 35px;
+                margin-right: 0;
+                font-size: 14px;
+            }
+        }
+        
+        .section-content {
+            color: #333;
             line-height: 1.8;
         }
-
+        
         .highlight-box {
-            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
-            color: white;
-            padding: 30px;
-            border-radius: 12px;
-            margin: 25px 0;
-            text-align: center;
+            background: linear-gradient(135deg, rgba(107, 166, 68, 0.1), rgba(74, 124, 35, 0.1));
+            border-left: 5px solid #6ba644;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
         }
-
-        .highlight-box h3 {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-        }
-
+        
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px;
-            margin: 25px 0;
+            margin: 20px 0;
         }
-
-        .service-card {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            padding: 25px;
-            border-radius: 12px;
-            border-left: 4px solid #28a745;
-            transition: all 0.3s ease;
-        }
-
-        .service-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(40, 167, 69, 0.2);
-        }
-
-        .service-card h4 {
-            color: #28a745;
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-        }
-
-        .pages-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 25px 0;
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .pages-table th {
-            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
-            color: white;
-            padding: 20px;
-            text-align: left;
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-
-        .pages-table td {
-            padding: 18px 20px;
-            border-bottom: 1px solid #dee2e6;
-        }
-
-        .pages-table tr:nth-child(even) {
-            background: #f8f9fa;
-        }
-
-        .pages-table tr:hover {
-            background: #e8f5e8;
-        }
-
-        .budget-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 25px 0;
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .budget-table th {
-            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
-            color: white;
-            padding: 20px;
-            text-align: left;
-            font-weight: 600;
-        }
-
-        .budget-table td {
-            padding: 18px 20px;
-            border-bottom: 1px solid #dee2e6;
-        }
-
-        .budget-table tr:nth-child(even) {
-            background: #f8f9fa;
-        }
-
-        .budget-total {
-            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
-            color: white;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-
-        .features-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .features-list li {
-            padding: 12px 0;
-            padding-left: 30px;
-            position: relative;
-            font-size: 1.1rem;
-        }
-
-        .features-list li:before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: #28a745;
-            font-weight: bold;
-            font-size: 1.3rem;
-        }
-
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin: 25px 0;
-        }
-
-        .tech-item {
-            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
-            color: white;
-            padding: 12px 20px;
-            border-radius: 25px;
-            font-weight: 500;
-            font-size: 0.95rem;
-        }
-
-        .methodology {
-            background: linear-gradient(135deg, #e8f5e8 0%, #d4edda 100%);
-            padding: 30px;
-            border-radius: 12px;
-            margin: 25px 0;
-        }
-
-        .methodology h4 {
-            color: #28a745;
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-        }
-
-        .footer {
-            background: linear-gradient(135deg, #495057 0%, #6c757d 100%);
-            color: white;
-            text-align: center;
-            padding: 40px;
-            border-radius: 15px;
-            margin-top: 50px;
-        }
-
-        .footer h3 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-        }
-
-        .icon {
-            font-size: 2rem;
-            margin-right: 10px;
-        }
-
+        
         @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2.5rem;
+            .services-grid {
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+                gap: 15px;
+                margin: 15px 0;
             }
-            
-            .header .subtitle {
-                font-size: 1.2rem;
+        }
+        
+        @media (max-width: 480px) {
+            .services-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+                margin: 15px 0;
             }
-            
-            .section-content {
-                padding: 25px;
-            }
-            
+        }
+        
+        @media (max-width: 360px) {
             .services-grid {
                 grid-template-columns: 1fr;
+                gap: 15px;
+            }
+        }
+        
+        .service-card {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .service-card {
+                padding: 15px;
+                border-radius: 12px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .service-card {
+                padding: 12px;
+                border-radius: 10px;
+            }
+        }
+        
+        .service-card:hover {
+            border-color: #6ba644;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(107, 166, 68, 0.2);
+        }
+        
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #6ba644, #4a7c23);
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            .service-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+                margin: 0 auto 12px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .service-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 18px;
+                margin: 0 auto 10px;
+            }
+        }
+        
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .table {
+                font-size: 12px;
+                margin: 15px 0;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .table {
+                font-size: 11px;
+                margin: 15px 0;
+            }
+        }
+        
+        .table th {
+            background: linear-gradient(135deg, #6ba644, #4a7c23);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            .table th {
+                padding: 12px 8px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .table th {
+                padding: 10px 6px;
+            }
+        }
+        
+        .table td {
+            padding: 15px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        @media (max-width: 768px) {
+            .table td {
+                padding: 12px 8px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .table td {
+                padding: 10px 6px;
+            }
+        }
+        
+        .table tr:hover {
+            background: rgba(107, 166, 68, 0.05);
+        }
+        
+        .cost-summary {
+            background: linear-gradient(135deg, #2d5016, #4a7c23);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .cost-summary {
+                padding: 25px 20px;
+                margin: 25px 0;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .cost-summary {
+                padding: 20px 15px;
+                margin: 20px 0;
+            }
+        }
+        
+        .total-cost {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .total-cost {
+                font-size: 28px;
+                margin-bottom: 8px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .total-cost {
+                font-size: 24px;
+                margin-bottom: 5px;
+            }
+        }
+        
+        .cost-range {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+        
+        @media (max-width: 768px) {
+            .cost-range {
+                font-size: 16px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .cost-range {
+                font-size: 14px;
+            }
+        }
+        
+        .footer-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+            border-left: 5px solid #6ba644;
+        }
+        
+        @media print {
+            .page {
+                page-break-after: always;
+            }
+            
+            body {
+                background: white;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>CAHIER DE CHARGES</h1>
-            <div class="subtitle">Site Vitrine PROREC</div>
-            <div style="margin-top: 20px; font-size: 1.2rem;">Promoteurs Réunis du Cameroun</div>
+    <!-- Page de Couverture -->
+    <div class="page cover-page">
+        <div class="logo-placeholder">
+            <div class="logo-text">PROREC</div>
         </div>
+        <h1 class="cover-title">CAHIER DES CHARGES</h1>
+        <h2 class="cover-subtitle">Site Vitrine PROREC</h2>
+        <p class="cover-description">
+            Analyse et Conception d'un site web vitrine moderne pour présenter les services BTP, Architecture, Topographie et Immobilier
+        </p>
+    </div>
 
-        <div class="intro">
-            <h2>🏗️ Introduction</h2>
-            <p>
-                Le projet consiste en la création d'un site vitrine moderne et professionnel pour PROREC 
-                (Promoteurs Réunis du Cameroun), une entreprise spécialisée dans le BTP, l'architecture, 
-                la topographie et l'immobilier. Ce site aura pour objectif de présenter les services, 
-                valoriser les réalisations et renforcer l'image de marque de l'entreprise.
-            </p>
+    <!-- Page 1: Présentation & Objectifs -->
+    <div class="page content-page">
+        <div class="page-header">
+            <div class="page-number">01</div>
+            <h2 class="page-title">PRÉSENTATION & OBJECTIFS</h2>
         </div>
-
-        <div class="section">
-            <div class="section-header">
-                <span class="icon">🎯</span>
-                PRÉSENTATION DE L'ENTREPRISE
-            </div>
-            <div class="section-content">
-                <div class="highlight-box">
-                    <h3>PROREC - Promoteurs Réunis du Cameroun</h3>
-                    <p>Votre partenaire de confiance pour tous vos projets de construction et d'immobilier</p>
-                </div>
-                
-                <div class="services-grid">
-                    <div class="service-card">
-                        <h4>🏗️ BTP</h4>
-                        <p>Bâtiment et travaux publics avec une expertise reconnue dans la construction moderne</p>
+        <div class="content">
+            <div class="section">
+                <h3 class="section-title">
+                    <div class="section-number">1</div>
+                    Présentation de l'entreprise
+                </h3>
+                <div class="section-content">
+                    <div class="highlight-box">
+                        <strong>PROREC</strong> est une entreprise spécialisée dans plusieurs domaines d'activité complémentaires dans le secteur de la construction et de l'immobilier.
                     </div>
-                    <div class="service-card">
-                        <h4>🏛️ Architecture</h4>
-                        <p>Conception architecturale innovante et adaptée aux besoins spécifiques</p>
-                    </div>
-                    <div class="service-card">
-                        <h4>📐 Topographie</h4>
-                        <p>Services de mesure et d'analyse topographique de haute précision</p>
-                    </div>
-                    <div class="service-card">
-                        <h4>🏠 Immobilier</h4>
-                        <p>Vente et location de biens immobiliers avec accompagnement personnalisé</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="section-header">
-                <span class="icon">🎯</span>
-                OBJECTIFS DU SITE
-            </div>
-            <div class="section-content">
-                <ul class="features-list">
-                    <li>Présenter les services de PROREC de manière professionnelle</li>
-                    <li>Mettre en valeur les projets réalisés avec une galerie attractive</li>
-                    <li>Renforcer la crédibilité et l'image professionnelle</li>
-                    <li>Générer des prises de contact qualifiées</li>
-                    <li>Améliorer la visibilité en ligne et le référencement</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="section-header">
-                <span class="icon">👥</span>
-                CIBLES
-            </div>
-            <div class="section-content">
-                <div class="services-grid">
-                    <div class="service-card">
-                        <h4>Clients Particuliers</h4>
-                        <p>Propriétaires individuels cherchant des services de construction ou d'immobilier</p>
-                    </div>
-                    <div class="service-card">
-                        <h4>Professionnels</h4>
-                        <p>Entreprises et professionnels du secteur nécessitant des services spécialisés</p>
-                    </div>
-                    <div class="service-card">
-                        <h4>Promoteurs Immobiliers</h4>
-                        <p>Développeurs et investisseurs immobiliers cherchant des partenaires fiables</p>
-                    </div>
-                    <div class="service-card">
-                        <h4>Collectivités</h4>
-                        <p>Administrations publiques et entreprises pour projets d'envergure</p>
+                    <div class="services-grid">
+                        <div class="service-card">
+                            <div class="service-icon">🏗️</div>
+                            <h4>BTP</h4>
+                            <p>Bâtiment et travaux publics</p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">📐</div>
+                            <h4>Architecture</h4>
+                            <p>Conception et design</p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">🗺️</div>
+                            <h4>Topographie</h4>
+                            <p>Relevés et mesures</p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">🏠</div>
+                            <h4>Immobilier</h4>
+                            <p>Vente et location</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="section">
-            <div class="section-header">
-                <span class="icon">⚡</span>
-                TECHNOLOGIES
-            </div>
-            <div class="section-content">
-                <div class="methodology">
-                    <h4>Stack Technique Moderne</h4>
-                    <p>Utilisation des dernières technologies pour garantir performance et évolutivité</p>
-                </div>
-                
-                <div class="tech-stack">
-                    <div class="tech-item">JavaScript ES6+</div>
-                    <div class="tech-item">Next.js Framework</div>
-                    <div class="tech-item">JAMstack Architecture</div>
-                    <div class="tech-item">Tailwind CSS</div>
-                    <div class="tech-item">Vercel Deployment</div>
-                    <div class="tech-item">SEO Optimized</div>
-                </div>
-
-                <div class="highlight-box">
-                    <h3>Hébergement Recommandé</h3>
-                    <p>Vercel (optimisé pour Next.js) ou Netlify pour une performance maximale</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="section-header">
-                <span class="icon">📱</span>
-                PAGES PRÉVUES
-            </div>
-            <div class="section-content">
-                <table class="pages-table">
-                    <thead>
-                        <tr>
-                            <th>Page</th>
-                            <th>Description Détaillée</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Accueil</strong></td>
-                            <td>Présentation brève de PROREC, visuels professionnels, call-to-action vers contact</td>
-                        </tr>
-                        <tr>
-                            <td><strong>À propos</strong></td>
-                            <td>Histoire de l'entreprise, mission, valeurs et équipe dirigeante</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Services</strong></td>
-                            <td>Détail complet des services : BTP, Architecture, Topographie, Immobilier</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Réalisations</strong></td>
-                            <td>Galerie interactive des projets réalisés avec descriptions et témoignages</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Contact</strong></td>
-                            <td>Formulaire de contact, informations de localisation, carte Google Maps intégrée</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="section-header">
-                <span class="icon">🎨</span>
-                DESIGN & FONCTIONNALITÉS
-            </div>
-            <div class="section-content">
-                <div class="methodology">
-                    <h4>Design Moderne et Professionnel</h4>
-                    <p>Interface épurée reflétant l'expertise et le sérieux de PROREC</p>
-                </div>
-
-                <h3 style="color: #28a745; margin: 25px 0 15px 0;">Caractéristiques Design :</h3>
-                <ul class="features-list">
-                    <li>Couleurs corporate : Vert, Noir, Blanc (selon charte PROREC)</li>
-                    <li>Navigation simple et intuitive</li>
-                    <li>Accent mis sur les visuels des réalisations</li>
-                    <li>Typographie moderne et lisible</li>
-                </ul>
-
-                <h3 style="color: #28a745; margin: 25px 0 15px 0;">Fonctionnalités Clés :</h3>
-                <ul class="features-list">
-                    <li>Design responsive (mobile, tablette, desktop)</li>
-                    <li>Formulaire de contact fonctionnel</li>
-                    <li>Galerie d'images des projets avec lightbox</li>
-                    <li>Carte Google Maps intégrée</li>
-                    <li>Bouton WhatsApp (mobile friendly)</li>
-                    <li>Optimisation SEO complète</li>
-                    <li>Chargement rapide et performance optimisée</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="section-header">
-                <span class="icon">💰</span>
-                BUDGÉTISATION
-            </div>
-            <div class="section-content">
-                <table class="budget-table">
-                    <thead>
-                        <tr>
-                            <th>Poste Technique</th>
-                            <th>Détails</th>
-                            <th>Coût Estimé (FCFA)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Conception & Design</td>
-                            <td>Maquettes, UX/UI design professionnel</td>
-                            <td>10 000</td>
-                        </tr>
-                        <tr>
-                            <td>Développement Next.js</td>
-                            <td>Intégration pages, formulaires, galeries</td>
-                            <td>10 000</td>
-                        </tr>
-                        <tr>
-                            <td>Déploiement</td>
-                            <td>Configuration Vercel + mise en ligne</td>
-                            <td>30 000</td>
-                        </tr>
-                        <tr>
-                            <td>Nom de domaine</td>
-                            <td>Enregistrement annuel (.com / .cm)</td>
-                            <td>8 000 - 12 000</td>
-                        </tr>
-                        <tr>
-                            <td>Formation gestion</td>
-                            <td>Formation Git et gestion contenu</td>
-                            <td>5 000 - 10 000</td>
-                        </tr>
-                        <tr>
-                            <td>Support post-livraison</td>
-                            <td>Corrections et ajustements</td>
-                            <td>5 000</td>
-                        </tr>
-                        <tr class="budget-total">
-                            <td colspan="2"><strong>TOTAL ESTIMÉ</strong></td>
-                            <td><strong>68 000 - 77 000 FCFA</strong></td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <div class="methodology">
-                    <h4>Modalités de Paiement</h4>
-                    <ul class="features-list">
-                        <li><strong>Tranche 1 (40%)</strong> : Après signature du contrat</li>
-                        <li><strong>Tranche 2 (35%)</strong> : À la fin du développement</li>
-                        <li><strong>Tranche 3 (25%)</strong> : Après livraison finale et formation</li>
+            <div class="section">
+                <h3 class="section-title">
+                    <div class="section-number">2</div>
+                    Objectifs du site
+                </h3>
+                <div class="section-content">
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin: 15px 0; padding: 10px; background: rgba(107, 166, 68, 0.1); border-radius: 8px; border-left: 4px solid #6ba644;">
+                            ✅ <strong>Présenter les services</strong> de PROREC de manière claire et professionnelle
+                        </li>
+                        <li style="margin: 15px 0; padding: 10px; background: rgba(107, 166, 68, 0.1); border-radius: 8px; border-left: 4px solid #6ba644;">
+                            ✅ <strong>Mettre en valeur</strong> les projets réalisés à travers une galerie attractive
+                        </li>
+                        <li style="margin: 15px 0; padding: 10px; background: rgba(107, 166, 68, 0.1); border-radius: 8px; border-left: 4px solid #6ba644;">
+                            ✅ <strong>Renforcer la crédibilité</strong> et l'image professionnelle de l'entreprise
+                        </li>
+                        <li style="margin: 15px 0; padding: 10px; background: rgba(107, 166, 68, 0.1); border-radius: 8px; border-left: 4px solid #6ba644;">
+                            ✅ <strong>Générer des prises de contact</strong> avec de nouveaux clients potentiels
+                        </li>
                     </ul>
                 </div>
             </div>
-        </div>
 
-        <div class="section">
-            <div class="section-header">
-                <span class="icon">⚠️</span>
-                CONDITIONS & CONTRAINTES
-            </div>
-            <div class="section-content">
-                <ul class="features-list">
-                    <li>Site statique sans base de données (pas d'administration côté client)</li>
-                    <li>Contenu fourni à temps par PROREC (textes, images, logos)</li>
-                    <li>Maintenance, blog ou CMS non inclus dans ce budget</li>
-                    <li>Site évolutif : ajout d'admin ou backend possible ultérieurement</li>
-                    <li>Images haute qualité requises pour la galerie projets</li>
-                    <li>Validation des étapes par PROREC avant passage à l'étape suivante</li>
-                </ul>
-
-                <div class="highlight-box">
-                    <h3>Livrables Inclus</h3>
-                    <p>Code source • Documentation technique • Formation • Support 30 jours</p>
+            <div class="section">
+                <h3 class="section-title">
+                    <div class="section-number">3</div>
+                    Cible
+                </h3>
+                <div class="section-content">
+                    <div class="services-grid">
+                        <div class="service-card">
+                            <div class="service-icon">👥</div>
+                            <h4>Particuliers</h4>
+                            <p>Clients individuels</p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">🏢</div>
+                            <h4>Professionnels</h4>
+                            <p>Entreprises et sociétés</p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">🏘️</div>
+                            <h4>Promoteurs</h4>
+                            <p>Promoteurs immobiliers</p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">🏛️</div>
+                            <h4>Collectivités</h4>
+                            <p>Institutions publiques</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="footer">
-            <h3>Ce cahier des charges constitue une feuille de route claire pour le développement du site vitrine PROREC</h3>
-            <p>En mettant l'accent sur une expérience utilisateur optimale et une image professionnelle renforcée</p>
-            <div style="margin-top: 30px; font-size: 1.1rem; opacity: 0.9;">
-                <strong>PROREC</strong> - Promoteurs Réunis du Cameroun<br>
-                Votre Partenaire de Confiance
+    <!-- Page 2: Technologies & Pages -->
+    <div class="page content-page">
+        <div class="page-header">
+            <div class="page-number">02</div>
+            <h2 class="page-title">TECHNOLOGIES & ARCHITECTURE</h2>
+        </div>
+        <div class="content">
+            <div class="section">
+                <h3 class="section-title">
+                    <div class="section-number">4</div>
+                    Technologie utilisée
+                </h3>
+                <div class="section-content">
+                    <div class="highlight-box">
+                        <strong>Stack Technique Moderne</strong> - JAMstack pour des performances optimales
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Composant</th>
+                                <th>Technologie</th>
+                                <th>Avantages</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Langage</strong></td>
+                                <td>JavaScript</td>
+                                <td>Moderne, performant</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Framework</strong></td>
+                                <td>Next.js</td>
+                                <td>SSR, optimisation SEO</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Architecture</strong></td>
+                                <td>JAMstack</td>
+                                <td>Rapidité, sécurité</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Styling</strong></td>
+                                <td>Tailwind CSS</td>
+                                <td>Responsive, léger</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Hébergement</strong></td>
+                                <td>Vercel / Netlify</td>
+                                <td>Déploiement automatique</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3 class="section-title">
+                    <div class="section-number">5</div>
+                    Pages prévues
+                </h3>
+                <div class="section-content">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Page</th>
+                                <th>Description</th>
+                                <th>Éléments clés</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Accueil</strong></td>
+                                <td>Présentation brève, visuel professionnel</td>
+                                <td>Hero section, CTA contact</td>
+                            </tr>
+                            <tr>
+                                <td><strong>À propos</strong></td>
+                                <td>Histoire, mission, valeurs de l'entreprise</td>
+                                <td>Timeline, équipe</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Services</strong></td>
+                                <td>Détail des services : BTP, Architecture, Topographie, Immobilier</td>
+                                <td>Cards interactives</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Réalisations</strong></td>
+                                <td>Galerie de projets avec filtres</td>
+                                <td>Portfolio dynamique</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Contact</strong></td>
+                                <td>Formulaire, informations, localisation</td>
+                                <td>Google Maps, WhatsApp</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 3: Design & Fonctionnalités -->
+    <div class="page content-page">
+        <div class="page-header">
+            <div class="page-number">03</div>
+            <h2 class="page-title">DESIGN & FONCTIONNALITÉS</h2>
+        </div>
+        <div class="content">
+            <div class="section">
+                <h3 class="section-title">
+                    <div class="section-number">6</div>
+                    Design souhaité
+                </h3>
+                <div class="section-content">
+                    <div class="services-grid">
+                        <div class="service-card">
+                            <div class="service-icon">🎨</div>
+                            <h4>Moderne</h4>
+                            <p>Interface contemporaine</p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">✨</div>
+                            <h4>Épuré</h4>
+                            <p>Design minimaliste</p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">💼</div>
+                            <h4>Professionnel</h4>
+                            <p>Image corporate</p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">🖼️</div>
+                            <h4>Visuel</h4>
+                            <p>Accent sur les réalisations</p>
+                        </div>
+                    </div>
+                    <div class="highlight-box">
+                        <strong>Palette de couleurs :</strong> Vert (couleur principale PROREC), Noir, Blanc pour un contraste professionnel et une identité visuelle forte.
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3 class="section-title">
+                    <div class="section-number">7</div>
+                    Fonctionnalités
+                </h3>
+                <div class="section-content">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                        <div style="background: rgba(107, 166, 68, 0.1); padding: 20px; border-radius: 10px; border-left: 4px solid #6ba644;">
+                            <h4 style="color: #2d5016; margin-bottom: 10px;">📱 Design Responsive</h4>
+                            <p>Adaptation automatique à tous les écrans (mobile, tablette, desktop)</p>
+                        </div>
+                        <div style="background: rgba(107, 166, 68, 0.1); padding: 20px; border-radius: 10px; border-left: 4px solid #6ba644;">
+                            <h4 style="color: #2d5016; margin-bottom: 10px;">📧 Formulaire de Contact</h4>
+                            <p>Envoi fonctionnel via Formspree, EmailJS ou API personnalisée</p>
+                        </div>
+                        <div style="background: rgba(107, 166, 68, 0.1); padding: 20px; border-radius: 10px; border-left: 4px solid #6ba644;">
+                            <h4 style="color: #2d5016; margin-bottom: 10px;">🖼️ Galerie Interactive</h4>
+                            <p>Affichage optimisé des projets avec lightbox et filtres</p>
+                        </div>
+                        <div style="background: rgba(107, 166, 68, 0.1); padding: 20px; border-radius: 10px; border-left: 4px solid #6ba644;">
+                            <h4 style="color: #2d5016; margin-bottom: 10px;">🗺️ Carte Google Maps</h4>
+                            <p>Localisation intégrée pour faciliter les visites</p>
+                        </div>
+                        <div style="background: rgba(107, 166, 68, 0.1); padding: 20px; border-radius: 10px; border-left: 4px solid #6ba644;">
+                            <h4 style="color: #2d5016; margin-bottom: 10px;">💬 Bouton WhatsApp</h4>
+                            <p>Contact direct optimisé pour mobile</p>
+                        </div>
+                        <div style="background: rgba(107, 166, 68, 0.1); padding: 20px; border-radius: 10px; border-left: 4px solid #6ba644;">
+                            <h4 style="color: #2d5016; margin-bottom: 10px;">🔍 Optimisation SEO</h4>
+                            <p>Balises meta, sitemap, structure optimisée pour Google</p>
+                        </div>
+                    </div>
+                    
+                    <style>
+                        @media (max-width: 768px) {
+                            .functionality-grid {
+                                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+                                gap: 15px !important;
+                            }
+                            .functionality-card {
+                                padding: 15px !important;
+                            }
+                            .functionality-card h4 {
+                                font-size: 16px !important;
+                            }
+                            .functionality-card p {
+                                font-size: 14px !important;
+                            }
+                        }
+                        
+                        @media (max-width: 480px) {
+                            .functionality-grid {
+                                grid-template-columns: 1fr !important;
+                                gap: 12px !important;
+                            }
+                            .functionality-card {
+                                padding: 12px !important;
+                            }
+                            .functionality-card h4 {
+                                font-size: 15px !important;
+                            }
+                            .functionality-card p {
+                                font-size: 13px !important;
+                            }
+                        }
+                    </style>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 4: Budget & Conditions -->
+    <div class="page content-page">
+        <div class="page-header">
+            <div class="page-number">04</div>
+            <h2 class="page-title">BUDGET & CONDITIONS</h2>
+        </div>
+        <div class="content">
+            <div class="section">
+                <h3 class="section-title">
+                    <div class="section-number">8</div>
+                    Estimation des coûts
+                </h3>
+                <div class="section-content">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Poste technique</th>
+                                <th>Détails</th>
+                                <th>Coût estimé (FCFA)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Conception & Design</strong></td>
+                                <td>Maquettes, UX/UI design</td>
+                                <td>10 000</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Développement Next.js</strong></td>
+                                <td>Intégration des pages, formulaires, galeries</td>
+                                <td>10 000</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Déploiement</strong></td>
+                                <td>Configuration + mise en ligne (Vercel/Netlify)</td>
+                                <td>30 000</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Nom de domaine</strong></td>
+                                <td>Enregistrement annuel (.com / .cm)</td>
+                                <td>8 000 – 12 000</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Formation</strong></td>
+                                <td>Gestion de contenu (Git, GitHub, fichiers .md)</td>
+                                <td>5 000 – 10 000</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Assistance post-livraison</strong></td>
+                                <td>Corrections mineures après tests</td>
+                                <td>5 000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <div class="cost-summary">
+                        <div class="total-cost">68 000 – 77 000 FCFA</div>
+                        <div class="cost-range">Budget total estimé</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3 class="section-title">
+                    <div class="section-number">9</div>
+                    Conditions & Contraintes
+                </h3>
+                <div class="section-content">
+                    <div style="display: grid; gap: 15px;">
+                        <div style="background: #fff3cd; border: 1px solid #ffeaa7; padding: 15px; border-radius: 8px; font-size: 14px;">
+                            <strong>⚠️ Site statique</strong> - Sans base de données (pas d'administration côté client)
+                        </div>
+                        <div style="background: #d1ecf1; border: 1px solid #bee5eb; padding: 15px; border-radius: 8px; font-size: 14px;">
+                            <strong>📝 Contenu</strong> - Fourni à temps par PROREC pour respecter les délais
+                        </div>
+                        <div style="background: #f8d7da; border: 1px solid #f5c6cb; padding: 15px; border-radius: 8px; font-size: 14px;">
+                            <strong>🚫 Non inclus</strong> - Maintenance, blog, ou ajout de CMS (Sanity, Strapi)
+                        </div>
+                        <div style="background: #d4edda; border: 1px solid #c3e6cb; padding: 15px; border-radius: 8px; font-size: 14px;">
+                            <strong>🔄 Évolutif</strong> - Ajout ultérieur d'admin ou backend possible
+                        </div>
+                        
+                        <style>
+                            @media (max-width: 480px) {
+                                .conditions-item {
+                                    padding: 12px !important;
+                                    font-size: 13px !important;
+                                }
+                                .conditions-item strong {
+                                    font-size: 13px !important;
+                                }
+                            }
+                        </style>
+                            <strong>🚫 Non inclus</strong> - Maintenance, blog, ou ajout de CMS (Sanity, Strapi)
+                        </div>
+                        <div style="background: #d4edda; border: 1px solid #c3e6cb; padding: 15px; border-radius: 8px;">
+                            <strong>🔄 Évolutif</strong> - Ajout ultérieur d'admin ou backend possible
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-info">
+                <h4 style="color: #2d5016; margin-bottom: 15px;">📋 Livrables</h4>
+                <p style="margin-bottom: 10px;"><strong>✅ Site web complet</strong> avec toutes les fonctionnalités spécifiées</p>
+                <p style="margin-bottom: 10px;"><strong>✅ Code source</strong> documenté et optimisé</p>
+                <p style="margin-bottom: 10px;"><strong>✅ Formation</strong> à la gestion du contenu via Git</p>
+                <p><strong>✅ Support technique</strong> pendant 30 jours après livraison</p>
             </div>
         </div>
     </div>
